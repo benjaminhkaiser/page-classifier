@@ -1,6 +1,6 @@
 {
-  "name": "rally-study-template",
-  "version": "0.4.0",
+  "name": "websci-scraper",
+  "version": "0.0.1",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --config-enable-developer-mode",
@@ -36,17 +36,12 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "description": "This a basic template for a Rally study.",
+  "description": "Retrieve page url, text, and content using WebScience",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mozilla-rally/study-template.git"
+    "url": "git+https://github.com/benjaminhkaiser/page-classifier.git"
   },
   "keywords": [],
-  "author": "Mozilla",
-  "license": "MPL-2.0",
-  "private": true,
-  "bugs": {
-    "url": "https://github.com/mozilla-rally/study-template/issues"
-  },
-  "homepage": "https://github.com/mozilla-rally/study-template#readme"
+  "author": "Ben Kaiser",
+  "private": true
 }

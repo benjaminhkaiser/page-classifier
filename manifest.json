@@ -1,15 +1,13 @@
 {
-  "description": "A basic template for a Mozilla Rally study.",
-  "author": "Mozilla",
+  "description": "Retrieve page url, text, and content using WebScience",
+  "author": "Ben Kaiser",
   "manifest_version": 2,
-  "name": "Rally Study Template",
-  "version": "0.4.0",
-  "homepage_url": "https://github.com/mozilla-rally/study-template",
+  "name": "websci-scraper",
+  "version": "0.0.1",
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "rally-study-template@mozilla.org",
-      "strict_min_version": "87.0"
+      "id": "bkaiser@princeton.edu"
     }
   },
 
