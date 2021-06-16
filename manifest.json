@@ -14,7 +14,9 @@
   "permissions": [
     "idle",
     "webNavigation",
-    "*://*.mozilla.org/*"
+    "webRequest",
+    "unlimitedStorage",
+    "<all_urls>"
   ],
 
   "background": {
