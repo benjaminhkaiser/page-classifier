@@ -66,3 +66,20 @@ This template comes with a set of predefined Node.js commands, which function si
 ## Debugging the Study Extension in Firefox
 * Debugging the Background Script - Navigate to the browser debugging page (`about:debugging`), click This Firefox, then click Inspect on the study extension. The page that opens is [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools) for the background page, including a [Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console), [JavaScript Debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger), and [Network Monitor](https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor). Background script console output will also appear on the [Browser Console](https://developer.mozilla.org/en-US/docs/Tools/Browser_Console). The template's web-ext configuration will automatically open both Firefox Developer Tools for the background page and the Browser Console on browser startup.
 * Debugging a Content Script - On a page where the content script is running, open [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools). The [Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console) will include output from the content script, and you can select the content script in the [JavaScript Debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger). Content script console output will also appear on the [Browser Console](https://developer.mozilla.org/en-US/docs/Tools/Browser_Console).
+
+## Notes
+This repository includes code for:
+* A Firefox extension that uses WebScience to retrieve the URL, title, and text of a page
+* A Selenium-based Firefox automation tool that installs the extension, then visits provided pages
+* A native Python app that receives native messages from the Firefox extension. The messages contain page data; the native app stores this data to disk.
+
+To run, first build the extension. `rollup -c; zip -r -FS utils/pagetext.xpi manifest.json dist/* -x *.py*`
+Then run the scraper.  `python3 src/scraper.py utils/urls.txt`
+
+To debug, use Xvfb/VNC as follows:
+`Xvfb :99`
+`x11vnc -display :99` - this will print the port that VNC is running on (often 5900)
+On the local machine, do port forwarding: `ssh -N -f -L localhost:5900:localhost:5900 bkaiser@128.112.224.109`
+Then on the local machine, run a VNC viewer and connect it to `localhost:5900`
+Finally, run the scraper through Xvfb with the `-s` flag: `DISPLAY=:99 python3 src/scraper.py utils/urls.txt -s -n 1`
+In the VNC viewer, you should see Firefox open and load pages. Press `Ctrl+Shift+J` to see the browser console, or in a new tab, go to `about:devtools-toolbox?id=pageContents%40princeton.edu&type=extension` to debug the extension.

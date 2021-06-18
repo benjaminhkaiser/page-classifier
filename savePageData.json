@@ -1,0 +1,9 @@
+{
+    "name": "savePageData",
+    "description": "Receives messages from Firefox extension and saves data to disk. Synchronize with copy in ~/.mozilla/native-messaging-hosts/",
+    "path": "/home/bkaiser/projects/page-classifier/src/savePageData.sh",
+    "type": "stdio",
+    "allowed_extensions": [
+        "pageContents@princeton.edu"
+    ]
+}

@@ -5,9 +5,15 @@
   "name": "websci-scraper",
   "version": "0.0.1",
 
+  "applications": {
+    "gecko": {
+      "id": "pageContents@princeton.edu"
+    }
+  },
+
   "browser_specific_settings": {
     "gecko": {
-      "id": "bkaiser@princeton.edu"
+      "id": "pageContents@princeton.edu"
     }
   },
 
@@ -16,12 +22,11 @@
     "webNavigation",
     "webRequest",
     "unlimitedStorage",
+    "nativeMessaging",
     "<all_urls>"
   ],
 
   "background": {
     "scripts": ["dist/background.js"]
-  },
-
-  "incognito": "not_allowed"
+  }
 }

@@ -1,21 +1,17 @@
 import { pageText, workers } from "@mozilla/web-science";
 
-const registeredWorkers = {}
-
 const worker = new Worker("/dist/pageContentsWorkerScript.worker.js");
-const name = 'text-scraper';
-const listener = savePageText;
-const initData = null;
+const name = 'page-contents';
 const matchPatterns = ["<all_urls>"];
 
 worker.postMessage({
   type: "init",
   name: name,
-  args: initData
+  args: null
 });
 
 worker.onmessage = event => {
-  listener(event.data);
+  savePageContents(event.data);
 };
 
 pageText.onTextParsed.addListener(
@@ -25,12 +21,20 @@ pageText.onTextParsed.addListener(
   }
 );
 
-registeredWorkers[name] = worker;
-
-// Callback for page-text worker
-function savePageText(result) {
+// Callback for worker
+function savePageContents(result) {
   console.log("Page text retrieved.");
-  console.log(result.url);
-  console.log(result.data.title);
-  console.log(result.data.textContent);
+  const message = [result.url, result.data.title, result.data.textContent].join("&&&&&")
+  var sending = browser.runtime.sendNativeMessage(
+    "savePageData",
+    JSON.stringify(message));
+  sending.then(onResponse, onError);
+}
+
+function onResponse(response) {
+  console.log("Received " + response);
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
 }

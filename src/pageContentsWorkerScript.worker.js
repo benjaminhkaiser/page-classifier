@@ -1,7 +1,7 @@
 console.log("workerscript 1");
 
 function onTextParsedListener(textParsedDetails) {
-    sendMessageToCaller("text-scraper",
+    sendMessageToCaller("page-content",
         textParsedDetails,
         textParsedDetails.url,
         textParsedDetails.pageId
